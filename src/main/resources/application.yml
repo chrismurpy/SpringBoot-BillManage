@@ -1,0 +1,14 @@
+# 连接池
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: murphy
+    password: xmf123456
+    url: jdbc:mysql://localhost:3306/bill-manager
+  thymeleaf:
+    cache: false # 关闭Thymeleaf缓存
+# 整合 mybatis
+mybatis:
+  type-aliases-package: com.murphy.entity # 别名搜索
+  mapper-locations: classpath:/mapper/*.xml
+

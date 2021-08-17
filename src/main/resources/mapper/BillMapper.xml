@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.murphy.mapper.BillMapper">
+    <sql id="selectSql">
+        SELECT b.id_        as id,
+               b.title_     as title,
+               b.bill_time_ as billTime,
+               b.type_id_   as typeId,
+               b.price_     as price,
+               b.explain_   as `explain`,
+               t.name_      as typeName
+        FROM bill_ as b
+                 left join
+             bill_type_ as t
+             on
+                 b.type_id_ = t.id_
+    </sql>
+    <select id="select" resultType="bill">
+        <include refid="selectSql"/>
+        <where>
+            <if test="typeId !=null">
+                b.type_id_ = #{typeId}
+            </if>
+            <if test="title !=null">
+                and b.title_ like '%${title}%'
+            </if>
+            <if test="date1 !=null">
+                and b.bill_time_ &gt;= #{date1}
+            </if>
+            <if test="date2 !=null">
+                and b.bill_time_ &lt;= #{date2}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <script type="text/javascript" th:src="@{/js/My97DatePicker/WdatePicker.js}"></script>
+    <script type="text/javascript" src="/js/My97DatePicker/lang/zh-cn.js"></script>
+</head>
+<body class="container">
+<br/>
+<h1 style="text-align: center">修改账单</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal" action="/bill/update" method="post" th:object="${bill}">
+        <input type="hidden" name="id" th:value="*{id}">
+        <div class="form-group">
+            <label for="typeId" class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+                <select name="typeId" id="typeId" class="form-control">
+                    <option value="">全部</option>
+                    <option th:each="t : ${types}" th:value="${t.id}" th:text="${t.name}"
+                            th:selected="${t.id} + '' == *{typeId}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">标题</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="title" id="title" th:value="*{title}" placeholder="标题"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="billTime" class="col-sm-2 control-label">日期</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="billTime" id="billTime"
+                       th:value="*{#dates.format(billTime, 'yyyy-MM-dd')}" placeholder="日期" onclick="WdatePicker()"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-sm-2 control-label">金额</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="price" id="price" th:value="*{price}" placeholder="金额"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="explain" class="col-sm-2 control-label">说明</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="explain" id="explain" th:value="*{explain}"
+                       placeholder="说明"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="text-align: center">
+                <input type="submit" value="保存" class="btn btn-info"/>
+                &nbsp; &nbsp; &nbsp;
+                <input type="reset" value="重置" class="btn btn-info"/>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>
