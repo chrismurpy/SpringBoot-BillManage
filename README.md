@@ -11,3 +11,6 @@
 
 ### 2. 效果
 
+![image](images/4账单列表.PNG)
+![image](images/5Update.PNG)
+![image](images/6Add.PNG)
