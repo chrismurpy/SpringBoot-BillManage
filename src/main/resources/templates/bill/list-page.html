@@ -21,6 +21,7 @@
             <label for="typeId" class="control-label">类型</label>
             <select name="typeId" id="typeId" class="form-control">
                 <option value="">全部</option>
+                <option th:each="t : ${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${t.id} + '' == ${#strings.trim(param.typeId)}"></option>
             </select>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
